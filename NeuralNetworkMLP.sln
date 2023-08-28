@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetworkMLP", "NeuralNetworkMLP.csproj", "{4FAEFB30-5D0B-43C5-A883-DAD039A86BA1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4FAEFB30-5D0B-43C5-A883-DAD039A86BA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FAEFB30-5D0B-43C5-A883-DAD039A86BA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FAEFB30-5D0B-43C5-A883-DAD039A86BA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FAEFB30-5D0B-43C5-A883-DAD039A86BA1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {356DDD26-CB29-4E64-AA93-1EFCA57DAC56}
+	EndGlobalSection
+EndGlobal

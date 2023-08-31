@@ -1,4 +1,5 @@
-﻿using NeuralNetworkMLP.Services;
+﻿using NeuralNetworkMLP.Entities;
+using NeuralNetworkMLP.Services;
 using NeuralNetworkMLP.Utils;
 using System;
 using System.Collections.Generic;
@@ -10,29 +11,27 @@ namespace NeuralNetworkMLP
 {
     public static class Controller
     {
-        public static double[][][] Base { get; set; } =
-            new double[][][] {
-               new double[][] { new double[] { 0, 0 }, new double[] { 0 } },
-                new double[][]{ new double[]  { 0 ,1 }, new double[] { 1  } },
-                new double[][]{ new double[] { 1 ,0 }, new double[] { 1 } },
-                new double[][]{ new double[] { 1 ,1 }, new double[] { 0 } }
-            };
         public static void Main()
         {
+            var dataReading = DataReading.ReadingAndGenerateInputText("../../Files/iris.data");
 
-            Perceptron perceptron = new Perceptron(2, 1, 2, 0.64);
+            FormatIrisData generateFormatted = new FormatIrisData(dataReading);
 
-            for (int e = 0; e < 20000; e++)
+            List<Sample> sampleFormattedList = generateFormatted.SampleListFormatted;
+
+            Perceptron perceptron = new Perceptron(4, 3, 4, 0.3);
+
+            for (int e = 0; e < 10000; e++)
             {
                 double periodError = 0;
                 double classificationError = 0;
                 double periodErrorClassification = 0;
 
-                for (int a = 0; a < Base.Length; a++)
+                for (int a = 0; a < sampleFormattedList.Count; a++)
                 {
                     double sampleError = 0;
-                    double[] inputX = Base[a][0];
-                    double[] inputY = Base[a][1];
+                    double[] inputX = sampleFormattedList[a].CordX;
+                    double[] inputY = sampleFormattedList[a].CordY;
 
                     double[] theta = perceptron.TrainnerExecute(inputX, inputY);
 

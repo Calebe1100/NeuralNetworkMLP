@@ -37,8 +37,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller.cs" />
+    <Compile Include="Entities\Sample.cs" />
+    <Compile Include="Utils\FormatIrisData.cs" />
+    <None Include="Files\iris.data" />
     <Compile Include="MLP.cs" />
     <Compile Include="Services\Perceptron.cs" />
+    <Compile Include="Utils\DataReading.cs" />
     <Compile Include="Utils\ErrorUtil.cs" />
   </ItemGroup>
   <ItemGroup />

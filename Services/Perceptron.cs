@@ -95,6 +95,42 @@ namespace NeuralNetworkMLP.Services
             return outArray;
         }
 
+
+        public double[] executar(double[] xIn)
+        {
+
+            xIn = xIn.Concat(Enumerable.Repeat(1.0, 1)).ToArray();
+
+            // Calcula a saída da camada intermediária
+            double[] hiddenOut = new double[AmountH + 1]; // representa a saída da camada intermediária
+
+            for (int h = 0; h < AmountH; h++)
+            {
+                double u = 0;
+                for (int i = 0; i < xIn.Length - 1; i++)
+                {
+                    u += xIn[i] * NetworksH[i,h];
+                }
+                hiddenOut[h] = Math.Sign(u); 
+            }
+            hiddenOut[AmountH] = 1;
+
+            // calcula a saida obtida
+            double[] teta = new double[xIn.Length - 1];
+            for (int j = 0; j < teta.Length; j++)
+            {
+                double u = 0;
+                for (int h = 0; h < hiddenOut.Length; h++)
+                {
+                    u += hiddenOut[h] * NetworksO[h,j];
+                }
+                teta[j] = 1 / (1 + Math.Exp(-u));
+            }
+
+            return teta;
+        }
+
+
         private void FillValues()
         {
             double max = 0.3;

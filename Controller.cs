@@ -23,9 +23,9 @@ namespace NeuralNetworkMLP
 
             for (int e = 0; e < 10000; e++)
             {
-                double periodError = 0;
-                double classificationError = 0;
-                double periodErrorClassification = 0;
+                double periodTraineer = 0;
+                double classificationTraineerError = 0;
+                double periodTraineerClassification = 0;
 
                 for (int a = 0; a < sampleFormattedList.Count; a++)
                 {
@@ -38,16 +38,45 @@ namespace NeuralNetworkMLP
                     for (int i = 0; i < inputY.Length; i++)
                     {
                         sampleError = Math.Abs(inputY[i] - theta[i]);
-                        classificationError = Math.Abs(inputY[i] - ErrorUtil.GetThreshold(theta[i]));
+                        classificationTraineerError = Math.Abs(inputY[i] - ErrorUtil.GetThreshold(theta[i]));
 
                     }
-                    periodError += sampleError;
-                    periodErrorClassification += classificationError;
+                    periodTraineer += sampleError;
+                    periodTraineerClassification += classificationTraineerError;
                 }
-                Console.Write("Epoca: " + e + " - erro:" + periodError);
-                Console.WriteLine(" - erro clssifiction:" + periodErrorClassification);
+
+                double periodTest = 0;
+                double classificationTestError = 0;
+                double periodTestClassification = 0;
+
+                for (int a = 0; a < sampleFormattedList.Count; a++)
+                {
+                    double sampleError = 0;
+                    double[] inputX = sampleFormattedList[a].CordX;
+                    double[] inputY = sampleFormattedList[a].CordY;
+
+                    double[] theta = perceptron.executar(inputX);
+
+                    for (int i = 0; i < inputY.Length; i++)
+                    {
+                        sampleError = Math.Abs(inputY[i] - theta[i]);
+                        classificationTestError = Math.Abs(inputY[i] - ErrorUtil.GetThreshold(theta[i]));
+
+                    }
+                    periodTest += sampleError;
+                    periodTestClassification += classificationTestError;
+                }
+
+                Console.Write("Epoca: " + e + " - erro treino:" + periodTraineer);
+                Console.WriteLine(" - erro treino classification:" + periodTraineerClassification);
+
+                Console.WriteLine("");
+
+                Console.Write("Epoca: " + e + " - erro teste:" + periodTest);
+                Console.WriteLine(" - erro teste classification:" + periodTestClassification);
             }
+
         }
     }
-
 }
+

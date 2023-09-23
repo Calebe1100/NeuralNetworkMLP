@@ -19,9 +19,9 @@ namespace NeuralNetworkMLP
 
             List<Sample> sampleFormattedList = generateFormatted.SampleListFormatted;
 
-            Perceptron perceptron = new Perceptron(4, 3, 4, 0.3);
+            Perceptron perceptron = new Perceptron(4, 3, 4, 0.001);
 
-            for (int e = 0; e < 10000; e++)
+            for (int e = 0; e < 100000; e++)
             {
                 double periodTraineer = 0;
                 double classificationTraineerError = 0;
@@ -33,7 +33,7 @@ namespace NeuralNetworkMLP
                     double[] inputX = sampleFormattedList[a].CordX;
                     double[] inputY = sampleFormattedList[a].CordY;
 
-                    double[] theta = perceptron.TrainnerExecute(inputX, inputY);
+                    double[] theta = perceptron.TrainerExecute(inputX, inputY);
 
                     for (int i = 0; i < inputY.Length; i++)
                     {
@@ -55,7 +55,7 @@ namespace NeuralNetworkMLP
                     double[] inputX = sampleFormattedList[a].CordX;
                     double[] inputY = sampleFormattedList[a].CordY;
 
-                    double[] theta = perceptron.executar(inputX);
+                    double[] theta = perceptron.TestExecute(inputX);
 
                     for (int i = 0; i < inputY.Length; i++)
                     {
@@ -68,12 +68,9 @@ namespace NeuralNetworkMLP
                 }
 
                 Console.Write("Epoca: " + e + " - erro treino:" + periodTraineer);
-                Console.WriteLine(" - erro treino classification:" + periodTraineerClassification);
-
-                Console.WriteLine("");
-
-                Console.Write("Epoca: " + e + " - erro teste:" + periodTest);
-                Console.WriteLine(" - erro teste classification:" + periodTestClassification);
+                Console.Write(" - erro teste:" + periodTest);
+                Console.Write(" - erro treino classificação:" + periodTraineerClassification);
+                Console.WriteLine(" - erro teste classificação:" + periodTestClassification);
             }
 
         }

@@ -30,7 +30,7 @@ namespace NeuralNetworkMLP.Services
 
         }
 
-        public double[] TrainnerExecute(double[] input, double[] values)
+        public double[] TrainerExecute(double[] input, double[] values)
         {
             double[] formatInput = input.Concat(Enumerable.Repeat(1.0, 1)).ToArray();
             double[] h = new double[AmountH + 1];
@@ -96,7 +96,7 @@ namespace NeuralNetworkMLP.Services
         }
 
 
-        public double[] executar(double[] xIn)
+        public double[] TestExecute(double[] xIn)
         {
 
             xIn = xIn.Concat(Enumerable.Repeat(1.0, 1)).ToArray();
